@@ -9,3 +9,7 @@ frame_height: int = 1080
 device: str = 'cuda:0'  # Use 'cpu' for CPU
 imgsz: tuple[int, int] = (384, 640)
 model_path: str = 'yolov8m.pt'
+
+# Configuration for the input video and export path
+video_path: str = 'input.mp4'
+export_path: str = 'output.mp4'
