@@ -17,10 +17,10 @@ def main() -> None:
 
     # Save the car tracking data
     data_path = "car_data.csv"
-    save_to_csv(inference_results, data_path)
+    save_to_csv(inference_results, export_path=data_path)
 
     # Generate visualizations
-    visualize_data(data_path)
+    visualize_data(data_path, save=True)
 
 
 if __name__ == "__main__":

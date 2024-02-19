@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-import cv2
 from typing import List, Dict
 
 from config import (
@@ -11,6 +10,7 @@ from config import (
     END_POINT_PERPENDICULAR)
 from utils import initialize_video_writer, update_car_count_and_record_state
 
+import cv2
 from ultralytics import YOLO
 
 
@@ -18,7 +18,7 @@ def inference(model: YOLO, video_path: str, export_path: str, device: str = 'cpu
     """
     Run inference on the input video and save the annotated video if specified.
 
-    Args:
+    Parameters:
         model (YOLO): The YOLO model used for tracking.
         video_path (str): The path to the input video.
         export_path (str): The path to save the annotated video.
@@ -30,9 +30,9 @@ def inference(model: YOLO, video_path: str, export_path: str, device: str = 'cpu
         List[Dict]: A list of state changes with timestamps.
     """
     cap = cv2.VideoCapture(video_path)
-    frame_width = int(cap.get(3))
-    frame_height = int(cap.get(4))
-    out = initialize_video_writer(export_path, frame_width, frame_height)
+    # Ensure the frame dimensions are integers
+    target_height, target_width = imgsz
+    out = initialize_video_writer(export_path, target_width, target_height)
 
     # Initialize simulation variables
     start_time = datetime.strptime("19.02.2024 13:50:00", "%d.%m.%Y %H:%M:%S")  # Simulated start time
@@ -50,6 +50,8 @@ def inference(model: YOLO, video_path: str, export_path: str, device: str = 'cpu
         success, frame = cap.read()
         if not success:
             break
+        # resize frame to the specified size
+        frame = cv2.resize(frame, (target_width, target_height))
 
         # Draw the horizontal and perpendicular lines
         cv2.line(frame, START_POINT_HORIZONTAL, END_POINT_HORIZONTAL, (0, 255, 0), 2)
@@ -108,6 +110,40 @@ def inference(model: YOLO, video_path: str, export_path: str, device: str = 'cpu
     out.release()
 
     return state_changes
+
+
+def update_car_count_and_record_state(
+        track_id: int,
+        direction: str,
+        car_counts: dict,
+        already_counted: dict,
+        current_time: datetime,
+        state_changes: list):
+    """
+    Update the car count for the specified direction if the car hasn't been counted in that direction yet and record the state change.
+
+    Parameters:
+        track_id (int): The ID of the car being tracked.
+        direction (str): The direction in which the car is moving.
+        car_counts (dict): A dictionary containing the car counts for each direction.
+        already_counted (dict): A dictionary containing the directions in which each car has already been counted.
+        current_time (datetime): The current timestamp.
+        state_changes (list): A list of state changes.
+
+    Returns:
+        None
+    """
+    if track_id not in already_counted or already_counted[track_id] != direction:
+        car_counts[direction] += 1
+        already_counted[track_id] = direction
+        # Record the state change with a precise timestamp
+        state_changes.append(
+            {
+                'car_id': track_id,
+                'timestamp': current_time.strftime("%Y-%m-%d %H:%M:%S.%f"),
+                'state': direction
+            }
+        )
 
 
 def draw_car_counts_and_time(frame, car_counts: Dict, current_time: datetime, frame_height: int) -> None:
