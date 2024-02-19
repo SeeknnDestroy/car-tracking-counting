@@ -12,7 +12,7 @@ Key achievements include:
 
 - **Model Conversion & Performance Comparison**: Successful conversion of the detection model to ONNX format, with a comparative analysis of inference speeds between the original and ONNX models on a CPU.
     ```
-    ONNX Inference Time: 1134.23 seconds
+    ONNX Inference Time: 802.90 seconds
     PyTorch Inference Time: 846.92 seconds
     ```
 
