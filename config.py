@@ -1,9 +1,11 @@
 
-# Configuration for line positions and frame dimensions
-line_position_horizontal: int = 800
-line_position_perpendicular: int = 1200
-frame_width: int = 1920
-frame_height: int = 1080
+# Configuration for line positions
+line_position_horizontal: int = 240
+line_position_perpendicular: int = 400
+START_POINT_HORIZONTAL: tuple[int, int] = (0, line_position_horizontal)
+END_POINT_HORIZONTAL: tuple[int, int] = (640, line_position_horizontal)
+START_POINT_PERPENDICULAR: tuple[int, int] = (line_position_perpendicular, 0)
+END_POINT_PERPENDICULAR: tuple[int, int] = (line_position_perpendicular, 384)
 
 # Configuration for the model and inference
 device: str = 'cuda:0'  # Use 'cpu' for CPU

@@ -8,7 +8,7 @@ from config import (
     END_POINT_HORIZONTAL,
     START_POINT_PERPENDICULAR,
     END_POINT_PERPENDICULAR)
-from utils import initialize_video_writer, update_car_count_and_record_state
+from utils import initialize_video_writer
 
 import cv2
 from ultralytics import YOLO
@@ -23,7 +23,7 @@ def inference(model: YOLO, video_path: str, export_path: str, device: str = 'cpu
         video_path (str): The path to the input video.
         export_path (str): The path to save the annotated video.
         device (str, optional): The device to run the inference on. Defaults to 'cpu'.
-        imgsz (tuple, optional): The size of the input image. Defaults to (640, 640).
+        imgsz (tuple, optional): The size of the input image (width, height).  Defaults to (640, 640).
         save (bool, optional): Whether to save the annotated video. Defaults to True.
 
     Returns:
