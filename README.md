@@ -69,4 +69,4 @@ Ensure your system's hardware is compatible with YOLOv8, especially for GPU usag
 - **BoT-SORT**: Using `Bot-SORT` instead of ByteTrack for tracking boosts performance significantly, especially for real-time applications. But has accuracy trade-offs.
 - **Image Resizing**: Further optimize the model by resizing images to a smaller resolution, which can improve inference speed.
 - **Using Smaller Models**: Employing smaller models like `YOLOv8s` or `YOLOv8n` is another way to improve performance. But again, this comes with a trade-off in accuracy.
-- **Use Real FPS**: The current implementation uses a fixed FPS assumption of 30, which can be replaced with real-time FPS calculations for more accurate time-based data. (This is especially important for real-time applications.)
+- **Use Real FPS**: The current implementation uses a fixed FPS assumption of 30, which can be replaced with real-time FPS calculations (for example, my inference videos had 29 FPS) for more accurate time-based data. (This is especially important for real-time applications.)
