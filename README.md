@@ -6,7 +6,7 @@ This project aims to accurately track and count vehicles in video footage using 
 ## Results
 Key achievements include:
 - **Annotated Video & Car Counts**: Vehicles being tracked with bounding boxes and IDs, alongside counts of vehicles moving in each direction. 
-![Annotated Video](https://github-production-user-asset-6210df.s3.amazonaws.com/44926076/306031600-71c9dcb0-60ad-4cb7-99fe-509322bc2dde.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240219T172755Z&X-Amz-Expires=300&X-Amz-Signature=ad9cf8b175f1315a6900a5f761a3d66e34f276e4270308bb88bccdb4846a656c&X-Amz-SignedHeaders=host&actor_id=44926076&key_id=0&repo_id=759174024)
+![annotated_video](https://github-production-user-asset-6210df.s3.amazonaws.com/44926076/306031600-71c9dcb0-60ad-4cb7-99fe-509322bc2dde.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240219T172755Z&X-Amz-Expires=300&X-Amz-Signature=ad9cf8b175f1315a6900a5f761a3d66e34f276e4270308bb88bccdb4846a656c&X-Amz-SignedHeaders=host&actor_id=44926076&key_id=0&repo_id=759174024)
 
 - **Model Conversion & Performance Comparison**: Successful conversion of the detection model to ONNX format, with a comparative analysis of inference speeds between the original and ONNX models on a CPU.
 
@@ -58,3 +58,9 @@ Follow these steps to set up your environment:
 6. Run the python script: `python main.py`.
 
 Ensure your system's hardware is compatible with YOLOv8, especially for GPU usage.
+
+## Future Improvement Ideas
+- **BoT-SORT**: Using `Bot-SORT` instead of ByteTrack for tracking boosts performance significantly, especially for real-time applications. But has accuracy trade-offs.
+- **Image Resizing**: Further optimize the model by resizing images to a smaller resolution, which can improve inference speed.
+- **Using Smaller Models**: Employing smaller models like `YOLOv8s` or `YOLOv8n` is another way to improve performance. But again, this comes with a trade-off in accuracy.
+- **Use Real FPS**: The current implementation uses a fixed FPS assumption of 30, which can be replaced with real-time FPS calculations for more accurate time-based data. (This is especially important for real-time applications.)
