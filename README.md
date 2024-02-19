@@ -9,6 +9,10 @@ Key achievements include:
 ![annotated_video](https://github.com/SeeknnDestroy/car-tracking-counting/assets/44926076/71c9dcb0-60ad-4cb7-99fe-509322bc2dde)
 
 - **Model Conversion & Performance Comparison**: Successful conversion of the detection model to ONNX format, with a comparative analysis of inference speeds between the original and ONNX models on a CPU.
+    ```
+    ONNX Inference Time: 1134.23 seconds
+    PyTorch Inference Time: 846.92 seconds
+    ```
 
 - **Data Visualization**: Plots generated from the CSV data, offering insights into the traffic flow and vehicle counts over time.
 ![number_of_cars](https://github.com/SeeknnDestroy/car-tracking-counting/assets/44926076/a47785ab-36fe-4a33-836d-c0c8033d987b)
