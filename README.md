@@ -1,5 +1,7 @@
 # Car Tracking and Counting
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/SeeknnDestroy/car-tracking-counting/blob/main/car_tracking.ipynb)
+
 ## Overview
 This project aims to accurately track and count vehicles in video footage using advanced object detection and tracking technologies, specifically employing YOLOv8 for detection and ByteTrack for tracking. The ultimate goal is to assign unique IDs to vehicles, count them based on their direction, convert the model to ONNX format for performance evaluation, and visualize the tracking data.
 
@@ -67,4 +69,4 @@ Ensure your system's hardware is compatible with YOLOv8, especially for GPU usag
 - **BoT-SORT**: Using `Bot-SORT` instead of ByteTrack for tracking boosts performance significantly, especially for real-time applications. But has accuracy trade-offs.
 - **Image Resizing**: Further optimize the model by resizing images to a smaller resolution, which can improve inference speed.
 - **Using Smaller Models**: Employing smaller models like `YOLOv8s` or `YOLOv8n` is another way to improve performance. But again, this comes with a trade-off in accuracy.
-- **Use Real FPS**: The current implementation uses a fixed FPS assumption of 30, which can be replaced with real-time FPS calculations for more accurate time-based data. (This is especially important for real-time applications.)
+- **Use Real FPS**: The current implementation uses a fixed FPS assumption of 30, which can be replaced with real-time FPS calculations (for example, my inference videos had 29 FPS) for more accurate time-based data. (This is especially important for real-time applications.)
