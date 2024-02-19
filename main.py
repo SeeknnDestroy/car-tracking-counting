@@ -20,7 +20,7 @@ def main() -> None:
     save_to_csv(inference_results, data_path)
 
     # Generate visualizations
-    visualize_data(data_path)
+    visualize_data(data_path, save=True)
 
 
 if __name__ == "__main__":
