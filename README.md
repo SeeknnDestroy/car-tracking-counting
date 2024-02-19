@@ -6,7 +6,7 @@ This project aims to accurately track and count vehicles in video footage using 
 ## Results
 Key achievements include:
 - **Annotated Video & Car Counts**: Vehicles being tracked with bounding boxes and IDs, alongside counts of vehicles moving in each direction. 
-![annotated_video](https://github-production-user-asset-6210df.s3.amazonaws.com/44926076/306031600-71c9dcb0-60ad-4cb7-99fe-509322bc2dde.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20240219%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240219T172755Z&X-Amz-Expires=300&X-Amz-Signature=ad9cf8b175f1315a6900a5f761a3d66e34f276e4270308bb88bccdb4846a656c&X-Amz-SignedHeaders=host&actor_id=44926076&key_id=0&repo_id=759174024)
+![annotated_video](https://github.com/SeeknnDestroy/car-tracking-counting/assets/44926076/71c9dcb0-60ad-4cb7-99fe-509322bc2dde)
 
 - **Model Conversion & Performance Comparison**: Successful conversion of the detection model to ONNX format, with a comparative analysis of inference speeds between the original and ONNX models on a CPU.
 
