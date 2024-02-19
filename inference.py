@@ -18,7 +18,7 @@ def inference(model: YOLO, video_path: str, export_path: str, device: str = 'cpu
     """
     Run inference on the input video and save the annotated video if specified.
 
-    Args:
+    Parameters:
         model (YOLO): The YOLO model used for tracking.
         video_path (str): The path to the input video.
         export_path (str): The path to save the annotated video.
@@ -30,9 +30,9 @@ def inference(model: YOLO, video_path: str, export_path: str, device: str = 'cpu
         List[Dict]: A list of state changes with timestamps.
     """
     cap = cv2.VideoCapture(video_path)
-    frame_width = int(cap.get(3))
-    frame_height = int(cap.get(4))
-    out = initialize_video_writer(export_path, frame_width, frame_height)
+    # Ensure the frame dimensions are integers
+    target_height, target_width = imgsz
+    out = initialize_video_writer(export_path, target_width, target_height)
 
     # Initialize simulation variables
     start_time = datetime.strptime("19.02.2024 13:50:00", "%d.%m.%Y %H:%M:%S")  # Simulated start time
@@ -50,6 +50,8 @@ def inference(model: YOLO, video_path: str, export_path: str, device: str = 'cpu
         success, frame = cap.read()
         if not success:
             break
+        # resize frame to the specified size
+        frame = cv2.resize(frame, (target_width, target_height))
 
         # Draw the horizontal and perpendicular lines
         cv2.line(frame, START_POINT_HORIZONTAL, END_POINT_HORIZONTAL, (0, 255, 0), 2)
