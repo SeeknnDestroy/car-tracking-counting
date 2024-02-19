@@ -1,5 +1,7 @@
 # Car Tracking and Counting
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/SeeknnDestroy/car-tracking-counting/blob/main/car_tracking.ipynb)
+
 ## Overview
 This project aims to accurately track and count vehicles in video footage using advanced object detection and tracking technologies, specifically employing YOLOv8 for detection and ByteTrack for tracking. The ultimate goal is to assign unique IDs to vehicles, count them based on their direction, convert the model to ONNX format for performance evaluation, and visualize the tracking data.
 
