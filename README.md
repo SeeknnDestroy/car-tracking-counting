@@ -70,3 +70,7 @@ Ensure your system's hardware is compatible with YOLOv8, especially for GPU usag
 - **Image Resizing**: Further optimize the model by resizing images to a smaller resolution, which can improve inference speed.
 - **Using Smaller Models**: Employing smaller models like `YOLOv8s` or `YOLOv8n` is another way to improve performance. But again, this comes with a trade-off in accuracy.
 - **Use Real FPS**: The current implementation uses a fixed FPS assumption of 30, which can be replaced with real-time FPS calculations (for example, my inference videos had 29 FPS) for more accurate time-based data. (This is especially important for real-time applications.)
+
+## Legacy Code Reference
+
+Included in this repository is a legacy module, `legacy_onnx_detector.py`, initially developed to explore ONNX model integration for object detection. While it showcases sophisticated handling of ONNX runtime and preprocessing techniques, this module was ultimately not utilized in the project's final iteration due to its performance efficiency compared to our selected approach. It remains part of the codebase to demonstrate the exploration of diverse solutions in the development process and may serve as a reference for future projects.
