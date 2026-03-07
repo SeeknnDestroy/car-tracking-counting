@@ -1,27 +1,9 @@
-from inference import inference
-from visualization import save_to_csv, visualize_data
-from config import model_path, video_path, export_path, device, imgsz
+import sys
+from pathlib import Path
 
-from ultralytics import YOLO
+sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 
-
-def main() -> None:
-    """
-    Main execution function to run the car tracking and counting project.
-    """
-    # Load the YOLOv8 model
-    model = YOLO(model_path)
-
-    # Run inference and save the annotated video
-    inference_results = inference(model, video_path=video_path, export_path=export_path, device=device, imgsz=imgsz, save=True)
-
-    # Save the car tracking data
-    data_path = "car_data.csv"
-    save_to_csv(inference_results, export_path=data_path)
-
-    # Generate visualizations
-    visualize_data(data_path, save=True)
-
+from car_tracking_counting.cli import main
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

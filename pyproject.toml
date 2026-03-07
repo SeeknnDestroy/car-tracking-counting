@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "car-tracking-counting"
+version = "0.1.0"
+description = "Vehicle tracking and directional counting from video using Ultralytics trackers."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "matplotlib>=3.9.0",
+  "opencv-python>=4.10.0",
+  "ultralytics>=8.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.0",
+  "ruff>=0.11.0",
+]
+
+[project.scripts]
+car-tracking-counting = "car_tracking_counting.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["car_tracking.ipynb", "legacy"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
