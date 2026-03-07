@@ -1,0 +1,30 @@
+[model]
+model = "yolo11n.pt"
+tracker = "botsort.yaml"
+device = "cpu"
+imgsz = [384, 640]
+conf = 0.25
+iou = 0.5
+class_ids = [2, 7]
+
+[video]
+input_path = "input.mp4"
+output_dir = "runs/intersection_dual_line"
+save_video = true
+
+[counting]
+start_time = ""
+
+[[counting.lines]]
+name = "horizontal_midline"
+start = [0, 240]
+end = [640, 240]
+negative_to_positive = "down"
+positive_to_negative = "up"
+
+[[counting.lines]]
+name = "vertical_gate"
+start = [400, 384]
+end = [400, 0]
+negative_to_positive = "right"
+positive_to_negative = "left"

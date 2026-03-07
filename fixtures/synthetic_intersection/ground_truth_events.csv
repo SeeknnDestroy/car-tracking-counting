@@ -1,0 +1,5 @@
+frame_index,video_time_s,track_id,class_id,line_name,direction
+17,1.7,1,2,horizontal_midline,down
+21,2.1,2,2,horizontal_midline,up
+22,2.2,3,7,vertical_gate,right
+29,2.9,4,2,vertical_gate,left

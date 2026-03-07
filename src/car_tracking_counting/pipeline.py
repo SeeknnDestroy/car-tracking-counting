@@ -218,5 +218,10 @@ def run_pipeline(
     )
     summary_payload = summary.to_dict()
     summary_payload["config"] = resolved.to_dict()
+    summary_payload["counts_total"] = {
+        f"{line_name}:{direction}": count
+        for line_name, counts in summary.counts_by_line.items()
+        for direction, count in counts.items()
+    }
     write_summary_json(summary_payload, summary.artifacts.summary_json)
     return summary

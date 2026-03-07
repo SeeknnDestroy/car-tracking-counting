@@ -99,11 +99,52 @@ uv run pytest
 
 The automated tests focus on line-crossing behavior, config validation, plotting, and a smoke-tested pipeline with mocked tracking outputs. They do not benchmark model quality or tracker accuracy.
 
+## Fixture Benchmark
+
+The repository now ships a tiny reproducible synthetic fixture under [`fixtures/synthetic_intersection`](fixtures/synthetic_intersection). It includes:
+
+- a deterministic generated MP4
+- precomputed tracked observations
+- canonical ground-truth crossing events
+- expected aggregate counts
+
+Run the fixture through the replay path:
+
+```bash
+uv run python -m car_tracking_counting run \
+  --config configs/profiles/intersection_dual_line.toml \
+  --input fixtures/synthetic_intersection/video.mp4 \
+  --observations fixtures/synthetic_intersection/observations.csv \
+  --output-dir runs/synthetic_fixture \
+  --no-save-video
+```
+
+Evaluate the produced events against the fixture ground truth:
+
+```bash
+uv run python -m car_tracking_counting evaluate \
+  --predicted runs/synthetic_fixture/events.csv \
+  --ground-truth fixtures/synthetic_intersection/ground_truth_events.csv \
+  --output runs/synthetic_fixture/evaluation.json
+```
+
+The evaluation reports event precision, recall, F1, missed events, extra events, and per-line/per-direction count error. It is a counting benchmark, not a model-quality benchmark.
+
+## Config Profiles
+
+Common camera-layout starting points live in [`configs/profiles`](configs/profiles):
+
+- `horizontal_roadway.toml`: one horizontal counting line for up/down flow
+- `vertical_gate.toml`: one vertical gate for left/right flow
+- `intersection_dual_line.toml`: combined horizontal and vertical lines for four-direction counting
+
+These profiles are intended as editable baselines, not automatic camera-layout detection.
+
 ## Limitations
 
 - Accuracy depends on detector/tracker quality, camera angle, line placement, and scene density.
 - The default model is intentionally lightweight for CPU usability, not maximum accuracy.
-- The repository does not ship a sample video or frozen benchmark artifacts, so reproduction means reproducing the pipeline behavior on your own input rather than matching a bundled golden output.
+- The synthetic fixture validates counting behavior through replayed observations. It does not claim detector or tracker quality on real traffic scenes.
 - This repository focuses on inference-time tracking and counting. It does not include model training, dataset curation, or formal MOT evaluation.
 
 ## Notebook And Legacy Material

@@ -1,0 +1,10 @@
+{
+  "horizontal_midline": {
+    "down": 1,
+    "up": 1
+  },
+  "vertical_gate": {
+    "left": 1,
+    "right": 1
+  }
+}
